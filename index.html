@@ -15,7 +15,7 @@
         <h2>אמון בין מפקדים לפקודים</h2>
         <div class="bottom" style="text-align: center;">
            <center>
-               <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/3o39S7COuUD290Kw3vtjq0?utm_source=generator" width="100%" height="232" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+               <iframe id="spotify-player" style="border-radius:12px" src="https://open.spotify.com/embed/episode/3o39S7COuUD290Kw3vtjq0?utm_source=generator" width="100%" height="232" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
            </center>
         </div>
         <div class="grid">
@@ -57,5 +57,20 @@
             </a>
         </div>
     </div>
+
+    <script>
+        const sectionLinks = document.querySelectorAll('.box');
+        const spotifyPlayer = document.getElementById('spotify-player');
+
+        sectionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // מניעת התנהגות ברירת מחדל של הקישור
+                const startTime = parseInt(link.getAttribute('data-start'));
+                
+                // עדכון ה-iframe עם זמן ההתחלה הנכון והפעלת הנגן אוטומטית
+                spotifyPlayer.src = `https://open.spotify.com/embed/episode/3o39S7COuUD290Kw3vtjq0?utm_source=generator&autoplay=1&start=${startTime}`;
+            });
+        });
+    </script>
 </body>
 </html>
